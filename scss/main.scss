@@ -1,7 +1,7 @@
 //General Styles
 @import "config";
 @import "utilities";
-
+@import "item_grid";
 * {
   margin: 0;
   padding: 0;
@@ -40,11 +40,20 @@ img {
 }
 
 //Main Nav
-#main-nav {
+.navbar {
   display: flex;
-  justify-content: space-between;
-  padding-top: 1rem;
-
+  align-items: center;
+  justify-content: center;
+  background-color: #333;
+  color: #fff;
+  opacity: 0.8;
+  height: 70px;
+  position: fixed;
+  top: 0px;
+  padding: 0 30px;
+  transition: 0.5s;
+  width: 100vw;
+  z-index: 10;
   ul {
     display: flex;
   }
@@ -68,27 +77,153 @@ img {
     }
   }
 }
+
+.navbar.top {
+  background-color: transparent;
+  color: black;
+}
+
 //Header
 #header {
   //header home
   &-home {
-    background: $bg-image no-repeat center bottom/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      $bg-image no-repeat center center/cover;
     height: 100vh;
     color: #fff;
-    opacity: 0.9;
-
-    //header content
+    position: relative;
     .header-content {
       text-align: center;
-      padding-top: 13%;
+      padding-top: 18%;
 
       h1 {
         font-size: 4rem;
         line-height: 1.2;
       }
-    }
-  }
 
-  &-inner {
+      .btn-light {
+        margin-top: 3rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+        border-radius: 5px;
+      }
+    }
+
+    //header content
   }
 }
+//About
+#about {
+  .about-info {
+    display: grid;
+    grid-template-areas:
+      "bioimage bio bio"
+      "aw1 aw2 aw3";
+    grid-gap: 1.2rem;
+  }
+  //Grid Area
+  .bio-image {
+    grid-area: bioimage;
+    border-radius: 50%;
+    align-self: center;
+  }
+
+  .bio {
+    grid-area: bio;
+    border-left: 3px solid $main-color;
+    padding: 0.8rem;
+
+    ul {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      .skillname {
+        font-size: 1.2rem;
+      }
+      img {
+        padding-top: 15px;
+        width: 80px;
+        &:hover {
+          width: 85px;
+        }
+      }
+      .colored {
+        font-size: 5rem;
+        &:hover {
+          font-size: 5.5rem;
+        }
+      }
+    }
+  }
+}
+
+//Contact
+#contact {
+  .text-field {
+    display: grid;
+    // grid-template-areas:
+    //   "name email"
+    //   "subject subject"
+    //   "message message";
+    grid-template-columns: auto;
+    grid-gap: 1rem;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    .subject-input {
+      grid-column: 1 / span2;
+    }
+    .message-input {
+      grid-column: 1 / span2;
+      height: 100px;
+    }
+    .text-input {
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      border: #ddd 1px solid;
+      border-radius: 5px;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: 2px solid $main-color; /* oranges! yey */
+    }
+    textarea::-webkit-input-placeholder,
+    input::-webkit-input-placeholder {
+      font-family: "Dosis", sans-serif;
+    }
+  }
+  button[type="submit"] {
+    width: 50%;
+  }
+}
+
+// Footer
+#main-footer {
+  background: $dark-color;
+  color: #fff;
+  height: 5rem;
+
+  .footer-content {
+    display: flex;
+    justify-content: space-evenly;
+    height: 5rem;
+    align-items: center;
+
+    .social i {
+      margin-right: 1rem;
+      border: 2px #fff solid;
+      border-radius: 50%;
+      height: 40px;
+      width: 40px;
+      line-height: 40px;
+      text-align: center;
+      padding: 0.5rem;
+      color: #fff;
+
+      &:hover {
+        background: $main-color;
+      }
+    }
+  }
+}
+
+@import "media";
